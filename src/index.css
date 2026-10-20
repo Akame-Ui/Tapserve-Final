@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+    /* TapServe Brand Colors */
+    --indigo: #4F46E5;
+    --indigo-dark: #3730A3;
+    --indigo-light: #818CF8;
+    --indigo-pale: #EEF2FF;
+    --space-indigo: #1E2952;
+    --space-indigo-deep: #0F172A;
+    --slate-bg: #F8FAFC;
+    --slate-dark: #1E293B;
+    --slate-muted: #64748B;
+    --border-light: #E2E8F0;
+
+    /* shadcn theme overrides */
+    --background: #FFFFFF;
+    --foreground: #1E293B;
+    --card: #FFFFFF;
+    --card-foreground: #1E293B;
+    --popover: #FFFFFF;
+    --popover-foreground: #1E293B;
+    --primary: #4F46E5;
+    --primary-foreground: #FFFFFF;
+    --secondary: #F8FAFC;
+    --secondary-foreground: #1E293B;
+    --muted: #F8FAFC;
+    --muted-foreground: #64748B;
+    --accent: #EEF2FF;
+    --accent-foreground: #4F46E5;
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: #E2E8F0;
+    --input: #E2E8F0;
+    --ring: #818CF8;
+    --radius: 1rem;
+    --sidebar: #F8FAFC;
+    --sidebar-foreground: #1E293B;
+    --sidebar-primary: #4F46E5;
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: #EEF2FF;
+    --sidebar-accent-foreground: #4F46E5;
+    --sidebar-border: #E2E8F0;
+    --sidebar-ring: #818CF8;
+}
+
+@theme inline {
+    --font-sans: 'Work Sans', sans-serif;
+    --font-heading: 'Chakra Petch', sans-serif;
+
+    /* Brand colors */
+    --color-indigo: var(--indigo);
+    --color-indigo-dark: var(--indigo-dark);
+    --color-indigo-light: var(--indigo-light);
+    --color-indigo-pale: var(--indigo-pale);
+    --color-space-indigo: var(--space-indigo);
+    --color-space-indigo-deep: var(--space-indigo-deep);
+    --color-slate-bg: var(--slate-bg);
+    --color-slate-dark: var(--slate-dark);
+    --color-slate-muted: var(--slate-muted);
+    --color-border-light: var(--border-light);
+
+    /* shadcn theme */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --radius-sm: calc(var(--radius) * 0.5);
+    --radius-md: calc(var(--radius) * 0.75);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.5);
+    --radius-2xl: calc(var(--radius) * 2);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Work Sans', sans-serif;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+    section[id],
+    footer[id] {
+        scroll-margin-top: 5.5rem;
+    }
+    :where(a, button, [role='button']):focus-visible {
+        outline: 2px solid var(--indigo-light);
+        outline-offset: 2px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+        html {
+            scroll-behavior: auto;
+        }
+    }
+    /* Improved focus-visible for better accessibility */
+    a:focus-visible,
+    button:focus-visible,
+    [role='button']:focus-visible {
+        outline: 2px solid var(--indigo-light);
+        outline-offset: 2px;
+        background-color: rgba(79, 70, 229, 0.1);
+        border-radius: var(--radius);
+    }
+}
+
+@layer components {
+    .skip-link {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 100;
+        transform: translateY(-200%);
+        border-radius: 0.75rem;
+        background: #ffffff;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--indigo);
+        box-shadow: 0 20px 25px -5px rgb(15 23 42 / 0.15), 0 8px 10px -6px rgb(15 23 42 / 0.1);
+        transition: transform 150ms ease;
+        left: 1rem;
+        top: 1rem;
+    }
+    .skip-link:focus-visible {
+        transform: translateY(0);
+        outline: 2px solid var(--indigo-light);
+        outline-offset: 2px;
+        background: #f8fafc;
+    }
+    .skip-link:focus {
+        transform: translateY(0);
+        outline: 2px solid var(--indigo-light);
+        outline-offset: 2px;
+    }
+    .heading-font {
+        font-family: 'Chakra Petch', sans-serif;
+    }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .glass-nav {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .dot-pattern {
+        background-image: radial-gradient(circle, #CBD5E1 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+    .gradient-text {
+        background: linear-gradient(135deg, #4F46E5, #818CF8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Admin dashboard theme (matches the public site's indigo brand)
+   Scoped to the admin shell so the public site keeps its brand.
+   ───────────────────────────────────────────────────────────── */
+.admin-shell {
+    --indigo: #4f46e5;
+    --indigo-dark: #3730a3;
+    --indigo-light: #818cf8;
+    --indigo-pale: #eef2ff;
+    --slate-bg: #f8fafc;
+    --slate-dark: #1e293b;
+    --slate-muted: #64748b;
+    --border-light: #e2e8f0;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #818cf8;
+    --primary: #4f46e5;
+    --primary-foreground: #ffffff;
+    --secondary: #f8fafc;
+    --secondary-foreground: #1e293b;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --accent: #eef2ff;
+    --accent-foreground: #4f46e5;
+    --sidebar: #ffffff;
+    --sidebar-foreground: #1e293b;
+    --sidebar-primary: #4f46e5;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #eef2ff;
+    --sidebar-accent-foreground: #4f46e5;
+    --sidebar-border: #e2e8f0;
+    background-color: #f1f5f9;
+    color: var(--slate-dark);
+}
+
+.admin-shell .heading-font {
+    font-family: 'Work Sans', sans-serif;
+    letter-spacing: -0.035em;
+}
+
+.admin-shell #admin-main .bg-white.rounded-2xl,
+.admin-shell #admin-main .bg-white.rounded-3xl {
+    box-shadow: 0 22px 50px -42px rgba(15, 23, 42, 0.45);
+}
+
+.admin-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 1.5rem;
+    background: #ffffff;
+    box-shadow: 0 22px 50px -42px rgba(15, 23, 42, 0.45);
+}
+
+.admin-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.admin-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: #cbd5e1;
+}
+.admin-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.admin-shell input::placeholder,
+.admin-shell textarea::placeholder {
+    color: #94a3b8;
+}
